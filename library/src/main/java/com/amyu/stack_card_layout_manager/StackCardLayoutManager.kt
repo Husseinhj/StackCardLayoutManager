@@ -20,9 +20,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 
-class StackCardLayoutManager(
-        private val maxItemCount: Int
-) : RecyclerView.LayoutManager() {
+class StackCardLayoutManager() : RecyclerView.LayoutManager() {
     private val addedChildren: List<View>
         get() = (0 until childCount).map { getChildAt(it) ?: throw NullPointerException() }
 
@@ -37,9 +35,6 @@ class StackCardLayoutManager(
     ) {
         if (state.itemCount == 0) {
             return
-        }
-        if (state.itemCount > maxItemCount) {
-            throw RuntimeException("Can not set more Item than maxItemCount")
         }
 
         detachAndScrapAttachedViews(recycler)
